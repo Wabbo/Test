@@ -1,19 +1,26 @@
 package com.example.nihal.medeasy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.nihal.medeasy.Adapters.SynderModelAdapter;
 import com.example.nihal.medeasy.Models.SynderModel;
 import com.example.nihal.medeasy.widget.CustomDialog;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,11 +28,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class SyndrActivity extends AppCompatActivity implements CustomDialog.CustomDialogListener  {
-    String syndromeS , drugS ;
-    RecyclerView recyclerView ;
-    List<SynderModel> synderModelList = new ArrayList<>() ;
-    SynderModelAdapter adapter = new SynderModelAdapter(synderModelList) ;
+public class SyndrActivity extends AppCompatActivity implements CustomDialog.CustomDialogListener {
+
+    FirebaseAuth auth;
+    RecyclerView recyclerView;
+    List<SynderModel> synderModelList = new ArrayList<>();
+    SynderModelAdapter adapter = new SynderModelAdapter(synderModelList);
 
 
     @Override
@@ -33,10 +41,13 @@ public class SyndrActivity extends AppCompatActivity implements CustomDialog.Cus
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_syndr);
 
-        recyclerView = findViewById(R.id.syndromeRecyclerView) ;
+        auth = FirebaseAuth.getInstance();
+
+
+        recyclerView = findViewById(R.id.syndromeRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-    //----------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -44,16 +55,16 @@ public class SyndrActivity extends AppCompatActivity implements CustomDialog.Cus
 
             @Override
             public void onClick(View view) {
-    //----------------------------------------------------------------------------------------------
-                 openDialog() ;  // method of the dialog
-
-    //----------------------------------------------------------------------------------------------
+                openDialog();  // method of the dialog
             }
         });
+        //----------------------------------------------------------------------------------------------
 
-        // RecyclerViewSwipeItem
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT ) {
+
+        /** RecyclerViewSwipeItem **/
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
                 return false;
@@ -61,27 +72,48 @@ public class SyndrActivity extends AppCompatActivity implements CustomDialog.Cus
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                synderModelList.remove(viewHolder.getAdapterPosition()) ;
-                recyclerView.setAdapter(adapter) ;
+                synderModelList.remove(viewHolder.getAdapterPosition());
+                recyclerView.setAdapter(adapter);
             }
         }).attachToRecyclerView(recyclerView);
     }
 
+    //----------------------------------------------------------------------------------------------
     @Override
     public void applyText(String syndrome, String drug) {
+
+
         Date currentTime = Calendar.getInstance().getTime();
         SimpleDateFormat dateFormat = new SimpleDateFormat(" EEE, d MMM yyyy , HH:mm a");
         String output = dateFormat.format(currentTime);
-        SynderModel model = new SynderModel(syndrome,drug,output/*"30/5/2010"*/) ;
-        synderModelList.add(model) ;
-        recyclerView.setAdapter(adapter) ;
 
+        SynderModel model = new SynderModel(syndrome, drug, output);
+
+        synderModelList.add(model);
+        //recyclerView.setAdapter(adapter) ;
+
+        FirebaseDatabase.getInstance().getReference("SynderList").child(FirebaseAuth.getInstance().getUid()).push().setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(SyndrActivity.this, "  Successfull  ", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+
+                    Toast.makeText(SyndrActivity.this, "  Fail", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+        recyclerView.setAdapter(adapter);
     }
 
     // method of the dialog
     private void openDialog() {
-        CustomDialog customDialog = new CustomDialog() ;
-        customDialog.show(getSupportFragmentManager(),"CustomDialogTest");
+        CustomDialog customDialog = new CustomDialog();
+        customDialog.show(getSupportFragmentManager(), "CustomDialogTest");
 
 
     }

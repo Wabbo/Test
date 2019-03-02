@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -25,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -41,8 +41,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
                 android:layout_marginTop="-110dp"
+                android:layout_marginBottom="30dp"
                 android:src="@drawable/medical_pre" />
 
             <LinearLayout
@@ -56,9 +56,9 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:src="@drawable/user"
                     android:layout_weight="1"
-                    android:padding="5dp"/>
+                    android:padding="5dp"
+                    android:src="@drawable/user" />
 
                 <EditText
                     android:id="@+id/UserName"
@@ -67,7 +67,8 @@
                     android:layout_weight="0.1"
                     android:backgroundTint="@color/colorAccent"
                     android:gravity="center"
-                    android:hint="Username" />
+                    android:hint="Username"
+                    android:inputType="text" />
 
             </LinearLayout>
 
@@ -95,14 +96,15 @@
                     android:layout_weight=".8"
                     android:backgroundTint="@color/colorAccent"
                     android:gravity="center"
-                    android:hint="Your Phone" />
+                    android:hint="Your Phone"
+                    android:inputType="number" />
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:src="@drawable/birth"
-                    android:padding="5dp"/>
+                    android:padding="5dp"
+                    android:src="@drawable/birth" />
 
                 <EditText
                     android:layout_width="fill_parent"
@@ -110,7 +112,8 @@
                     android:layout_weight=".8"
                     android:backgroundTint="@color/colorAccent"
                     android:gravity="center"
-                    android:hint="Year of birth" />
+                    android:hint="Year of birth"
+                    android:inputType="number" />
 
 
             </LinearLayout>
@@ -138,7 +141,8 @@
                     android:layout_weight="0.1"
                     android:backgroundTint="@color/colorAccent"
                     android:gravity="center"
-                    android:hint="Your Address" />
+                    android:hint="Your Address"
+                    android:inputType="text" />
 
 
             </LinearLayout>
@@ -157,8 +161,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:src="@drawable/settings"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:src="@drawable/settings" />
 
                 <EditText
                     android:id="@+id/Occupation"
@@ -167,7 +171,8 @@
                     android:layout_weight="0.1"
                     android:backgroundTint="@color/colorAccent"
                     android:gravity="center"
-                    android:hint="Your Occupation" />
+                    android:hint="Your Occupation"
+                    android:inputType="text" />
 
 
             </LinearLayout>
@@ -186,8 +191,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:src="@drawable/broken_link"
-                    android:padding="5dp"/>
+                    android:padding="5dp"
+                    android:src="@drawable/broken_link" />
 
                 <EditText
                     android:id="@+id/FamilyHistoryLink"
@@ -196,7 +201,8 @@
                     android:layout_weight="0.1"
                     android:backgroundTint="@color/colorAccent"
                     android:gravity="center"
-                    android:hint="Family History Link" />
+                    android:hint="Family History Link"
+                    android:inputType="text" />
 
 
             </LinearLayout>
@@ -216,8 +222,9 @@
                     android:layout_height="30dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:src="@drawable/weigt"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:src="@drawable/weigt" />
+
                 <EditText
                     android:id="@+id/Weight"
                     android:layout_width="fill_parent"
@@ -225,7 +232,8 @@
                     android:layout_weight=".8"
                     android:backgroundTint="@color/colorAccent"
                     android:gravity="center"
-                    android:hint="You Weight" />
+                    android:hint="You Weight"
+                    android:inputType="text" />
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -241,7 +249,8 @@
                     android:layout_weight=".8"
                     android:backgroundTint="@color/colorAccent"
                     android:gravity="center"
-                    android:hint="Your Height" />
+                    android:hint="Your Height"
+                    android:inputType="text" />
 
 
             </LinearLayout>
@@ -270,8 +279,8 @@
                     android:layout_weight="0.1"
                     android:backgroundTint="@color/colorAccent"
                     android:gravity="center"
-                    android:hint="Your Password" />
-
+                    android:hint="Your Password"
+                    android:inputType="textPassword" />
 
 
             </LinearLayout>

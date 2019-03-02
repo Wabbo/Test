@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardCornerRadius="@dimen/guillotine_actionbar_background_view_height">
+        app:cardCornerRadius="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,12 +20,11 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
                 android:src="@drawable/sick" />
 
             <View
                 android:layout_width="2dp"
-                android:layout_height="70dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
@@ -45,7 +44,7 @@
                     android:layout_marginTop="8dp"
                     android:text="The syndrome"
                     android:textColor="@color/selected_item_color"
-                    android:textSize="15sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -55,17 +54,20 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:text="drug"
-                    android:textColor="@color/selected_item_color" />
+                    android:textColor="@color/selected_item_color"
+                    android:textSize="19sp" />
 
                 <TextView
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
+                    android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
                     android:text="30/5/2010"
-                    android:textColor="@color/selected_item_color" />
+                    android:textColor="@color/selected_item_color"
+                    android:textSize="15sp" />
             </LinearLayout>
 
         </LinearLayout>

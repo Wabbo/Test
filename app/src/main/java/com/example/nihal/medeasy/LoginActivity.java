@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         loginPhone = findViewById(R.id.loginPhone) ;
         loginPassWord =findViewById(R.id.loginPassWord) ;
@@ -40,9 +40,11 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
                         if (task.isSuccessful()){
-                            FirebaseUser user = task.getResult().getUser() ;
-                            startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+                          FirebaseUser user = task.getResult().getUser() ;
+
+                            startActivity(new Intent(LoginActivity.this,SyndrActivity.class));
                         }
                         else {
                             Toast.makeText(LoginActivity.this," Phone or PassWord are incorrect " ,Toast.LENGTH_SHORT).show();
@@ -56,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+        /** to going to signUpForm  **/
 
     public void signUpForm (View view) {
         Intent intent = new Intent(this,SignupActivity.class);

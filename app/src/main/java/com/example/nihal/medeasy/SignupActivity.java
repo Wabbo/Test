@@ -35,31 +35,32 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
 
-        UserName   = findViewById(R.id.UserName);
-        Phone      = findViewById(R.id.Phone);
-        Address    = findViewById(R.id.Address);
+        UserName = findViewById(R.id.UserName);
+        Phone = findViewById(R.id.Phone);
+        Address = findViewById(R.id.Address);
         Occupation = findViewById(R.id.Occupation);
         FamilyHistoryLink = findViewById(R.id.FamilyHistoryLink);
-        Weight     = findViewById(R.id.Weight);
-        Height     = findViewById(R.id.Height);
-        PassWord   = findViewById(R.id.PassWord);
-        saveData   = findViewById(R.id.SignUp);
+        Weight = findViewById(R.id.Weight);
+        Height = findViewById(R.id.Height);
+        PassWord = findViewById(R.id.PassWord);
+        saveData = findViewById(R.id.SignUp);
 
         auth = FirebaseAuth.getInstance();
+
         //  database  = FirebaseDatabase.getInstance();
         // myRef = database.getReference("Users");
 
         saveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String UserPhoneInFireB  = Phone.getText().toString() + "@gmail.com";
-                String PassWordInFireB   = PassWord.getText().toString();
-                String UserNameInFireB   = UserName.getText().toString();
-                String AddressInFireB    = Address.getText().toString();
+                String UserPhoneInFireB = Phone.getText().toString() + "@gmail.com";
+                String PassWordInFireB = PassWord.getText().toString();
+                String UserNameInFireB = UserName.getText().toString();
+                String AddressInFireB = Address.getText().toString();
                 String OccupationInFireB = Occupation.getText().toString();
                 String FamilyHistoryLinkInFireB = FamilyHistoryLink.getText().toString();
-                String WeightInFireB     = Weight.getText().toString();
-                String HeightInFireB     = Height.getText().toString();
+                String WeightInFireB = Weight.getText().toString();
+                String HeightInFireB = Height.getText().toString();
 
                 final UserModel user = new UserModel(
                         UserNameInFireB,
@@ -76,17 +77,13 @@ public class SignupActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            /*FirebaseUser firebaseUser = task.getResult().getUser();
-                            String ref = firebaseUser.getUid();
-                            myRef.child(ref).setValue(user);
-                            */
                             FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(SignupActivity.this, " Register Successfull  ", Toast.LENGTH_SHORT).show();
                                         finish();
-                                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                                        startActivity(new Intent(getApplicationContext(), SyndrActivity.class));
                                     } else {
                                         if (task.getException().getMessage().equals("The email address is already in use by another account.")) {
                                             Toast.makeText(SignupActivity.this, "The phone is already in use by another user.", Toast.LENGTH_SHORT).show();
