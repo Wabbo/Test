@@ -83,7 +83,7 @@ public class SignupActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(SignupActivity.this, " Register Successfull  ", Toast.LENGTH_SHORT).show();
                                         finish();
-                                        startActivity(new Intent(getApplicationContext(), SyndrActivity.class));
+                                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                                     } else {
                                         if (task.getException().getMessage().equals("The email address is already in use by another account.")) {
                                             Toast.makeText(SignupActivity.this, "The phone is already in use by another user.", Toast.LENGTH_SHORT).show();

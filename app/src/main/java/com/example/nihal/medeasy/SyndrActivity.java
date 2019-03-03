@@ -90,9 +90,9 @@ public class SyndrActivity extends AppCompatActivity implements CustomDialog.Cus
         SynderModel model = new SynderModel(syndrome, drug, output);
 
         synderModelList.add(model);
-        //recyclerView.setAdapter(adapter) ;
+        recyclerView.setAdapter(adapter) ;
 
-        FirebaseDatabase.getInstance().getReference("SynderList").child(FirebaseAuth.getInstance().getUid()).push().setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
+        /*FirebaseDatabase.getInstance().getReference("SynderList").child(FirebaseAuth.getInstance().getUid()).push().setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
 
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -106,7 +106,7 @@ public class SyndrActivity extends AppCompatActivity implements CustomDialog.Cus
                 }
             }
         });
-
+        */
         recyclerView.setAdapter(adapter);
     }
 

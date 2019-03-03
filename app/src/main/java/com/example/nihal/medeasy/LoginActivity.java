@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                           FirebaseUser user = task.getResult().getUser() ;
 
-                            startActivity(new Intent(LoginActivity.this,SyndrActivity.class));
+                            startActivity(new Intent(LoginActivity.this,HomeActivity.class));
                         }
                         else {
                             Toast.makeText(LoginActivity.this," Phone or PassWord are incorrect " ,Toast.LENGTH_SHORT).show();
